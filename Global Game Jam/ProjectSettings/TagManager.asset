@@ -14,7 +14,7 @@ TagManager:
   - 
   - 
   - Blocking Layer
-  - 
+  - Items
   - 
   - 
   - 
@@ -43,4 +43,7 @@ TagManager:
     locked: 0
   - name: Units
     uniqueID: 1205308731
+    locked: 0
+  - name: Items
+    uniqueID: 4058079321
     locked: 0
