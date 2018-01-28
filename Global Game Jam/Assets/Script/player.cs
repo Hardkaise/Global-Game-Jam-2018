@@ -52,6 +52,8 @@ public class Player : MonoBehaviour
             _anim.SetBool("check", true);
         else if (_anim.GetCurrentAnimatorStateInfo(0).IsName("up") && _anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.25f && !Input.GetKey(KeyCode.UpArrow))
             _anim.SetBool("check", true);
+        if (Input.GetKey(KeyCode.Escape))
+            Application.Quit();
         movement.x *= (float)0.1;
         movement.y *= (float)0.1;
         var moveX = Body.transform.position.x;
