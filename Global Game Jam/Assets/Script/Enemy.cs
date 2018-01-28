@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour {
@@ -18,6 +19,10 @@ public class Enemy : MonoBehaviour {
         _anim = GetComponent<Animator>();
         _anim.SetInteger("life", life);
         _anim.SetBool("check", true);
+        _anim.SetBool("checkAlive", true);
+        
+
+
         if (Random.Range(0, 2) % 2 == 0)
         {
             next = false;
@@ -38,6 +43,38 @@ public class Enemy : MonoBehaviour {
         Body.AddForce(new Vector2(x = Random.Range(-2, 5), y = Random.Range(-2, 5)));
         else
             Body.AddForce(new Vector2(x = Random.Range(-5, 2), y = Random.Range(-5, 2)));
+        if (isWolf == false) {
+            float absX = Math.Abs(x);
+            float absY = Math.Abs(y);
+
+            if (absX > absY && _anim.GetBool("checkAlive") == true) {
+                if(x < 0){
+                    _anim.SetBool("checkAlive", false);
+                    _anim.SetTrigger("aliveDroite");
+                }
+                else
+                {
+                    _anim.SetBool("checkAlive", false);
+                    _anim.SetTrigger("aliveGauche");
+                }
+            }else if(absX < absY && _anim.GetBool("checkAlive") == true)
+            {
+                if (y < 0)
+                {
+                    _anim.SetBool("checkAlive", false);
+                    _anim.SetTrigger("aliveHaut");
+                }
+                else
+                {
+                    _anim.SetBool("checkAlive", false);
+                    _anim.SetTrigger("aliveBas");
+                }
+            }
+            _anim.SetBool("checkAlive", true);
+
+
+        }
+
         if (timeLeft > 2f)
         {
             _anim.SetBool("check", true);
@@ -71,9 +108,11 @@ public class Enemy : MonoBehaviour {
                     _anim.SetBool("check", false);
                     _anim.SetTrigger("right");
                 }
-//                if (_anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.25f)
-//                    _anim.SetBool("check", true);
-            }
+                if (_anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.25f)
+                    _anim.SetBool("check", true);
+          
+        }
+        
         }
         if (isWolf == false && life <= 0)
         {

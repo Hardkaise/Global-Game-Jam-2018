@@ -24,29 +24,22 @@ public class Player : MonoBehaviour
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
-        if (_anim.GetInteger("life") <= 0 && !die)
-        {
-            _anim.SetTrigger("die");
-            fixPos = Body.position;
-            die = true;
-
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow) && _anim.GetBool("check") == true)
+        if (Input.GetKey(KeyCode.LeftArrow) && _anim.GetBool("check") == true && _anim.GetInteger("life") > 0)
         {
             _anim.SetBool("check", false);
             _anim.SetTrigger("left");
         }
-        else if (Input.GetKey(KeyCode.DownArrow) && _anim.GetBool("check") == true)
+        else if (Input.GetKey(KeyCode.DownArrow) && _anim.GetBool("check") == true && _anim.GetInteger("life") > 0)
         {
             _anim.SetBool("check", false);
             _anim.SetTrigger("down");
         }
-        else if (Input.GetKey(KeyCode.UpArrow) && _anim.GetBool("check") == true)
+        else if (Input.GetKey(KeyCode.UpArrow) && _anim.GetBool("check") == true && _anim.GetInteger("life") > 0)
         {
             _anim.SetBool("check", false);
             _anim.SetTrigger("up");
         }
-        else if (Input.GetKey(KeyCode.RightArrow) && _anim.GetBool("check") == true)
+        else if (Input.GetKey(KeyCode.RightArrow) && _anim.GetBool("check") == true && _anim.GetInteger("life") > 0)
         {
             _anim.SetBool("check", false);
             _anim.SetTrigger("right");
@@ -71,6 +64,13 @@ public class Player : MonoBehaviour
         _anim.SetInteger("life", life);
         if (life <= 0)
             Body.position = fixPos;
+        if (_anim.GetInteger("life") <= 0 && !die)
+        {
+            _anim.SetTrigger("die");
+            fixPos = Body.position;
+            die = true;
+
+        }
     }
 
     private void OnCollisionStay2D(Collision2D other)
