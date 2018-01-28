@@ -30,7 +30,7 @@ public class Board : MonoBehaviour {
         public GameObject[] mineTiles;
         public GameObject[] outerWallTiles;
 
-        private Transform boardHolder;
+    private Transform boardHolder;
         private List<Vector2> gridPositions = new List<Vector2>();
 
         void InitialiseList()
@@ -71,12 +71,12 @@ public class Board : MonoBehaviour {
         void LayoutObjectAtRandom(GameObject[] tileArray, int minimum, int maximum)
         {
             int objectCount = Random.Range(minimum, maximum + 1);
-            for (int i = 0; i < objectCount; i++)
-            {
-                Vector2 randomPosition = RandomPosition();
-                GameObject tileChoise = tileArray[Random.Range(0, tileArray.Length)];
-                Instantiate(tileChoise, randomPosition, Quaternion.identity);
-            }
+        for (int i = 0; i < objectCount; i++)
+        {
+            Vector2 randomPosition = RandomPosition();
+            GameObject tileChoise = tileArray[Random.Range(0, tileArray.Length)];
+            Instantiate(tileChoise, randomPosition, Quaternion.identity);
+        }
         }
 
         public void SetupScene()

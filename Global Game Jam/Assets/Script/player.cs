@@ -7,6 +7,9 @@ public class Player : MonoBehaviour
     private const int WallDamage = 1;
     private bool _hited = false;
     private Animator _anim;
+    private int life = 10;
+    Vector2 fixPos;
+    bool die = false;
 
     protected  void Start()
     {
@@ -20,22 +23,29 @@ public class Player : MonoBehaviour
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
         Vector2 movement = new Vector2(moveHorizontal, moveVertical);
-        if (Input.GetKey(KeyCode.LeftArrow) && _anim.GetBool("check") == true)
+        if (_anim.GetInteger("life") <= 0 && !die)
+        {
+            _anim.SetTrigger("die");
+            fixPos = Body.position;
+            die = true;
+
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow) && _anim.GetBool("check") == true)
         {
             _anim.SetBool("check", false);
             _anim.SetTrigger("left");
         }
-        if (Input.GetKey(KeyCode.DownArrow) && _anim.GetBool("check") == true)
+        else if (Input.GetKey(KeyCode.DownArrow) && _anim.GetBool("check") == true)
         {
             _anim.SetBool("check", false);
             _anim.SetTrigger("down");
         }
-        if (Input.GetKey(KeyCode.UpArrow) && _anim.GetBool("check") == true)
+        else if (Input.GetKey(KeyCode.UpArrow) && _anim.GetBool("check") == true)
         {
             _anim.SetBool("check", false);
             _anim.SetTrigger("up");
         }
-        if (Input.GetKey(KeyCode.RightArrow) && _anim.GetBool("check") == true)
+        else if (Input.GetKey(KeyCode.RightArrow) && _anim.GetBool("check") == true)
         {
             _anim.SetBool("check", false);
             _anim.SetTrigger("right");
@@ -55,9 +65,22 @@ public class Player : MonoBehaviour
         Body.transform.position = new Vector3(moveX + movement.x, moveY + movement.y, 0);
     }
 
+    public void Update()
+    {
+        _anim.SetInteger("life", life);
+        if (life <= 0)
+            Body.position = fixPos;
+    }
+
     private void OnCollisionStay2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Wall") && !_hited)
+        if (other.gameObject.CompareTag("Mine") && life > 0)
+        {
+            life -= 2;
+            var mine = other.gameObject.GetComponent<Mine>();
+            mine.gameObject.SetActive(false);
+        }
+        else if (other.gameObject.CompareTag("Wall") && !_hited)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {

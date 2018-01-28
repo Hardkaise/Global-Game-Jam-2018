@@ -4,7 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Mine
   - Wall
+  - Enemy
   layers:
   - Default
   - TransparentFX
