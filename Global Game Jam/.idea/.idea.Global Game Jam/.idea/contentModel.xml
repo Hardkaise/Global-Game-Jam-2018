@@ -15,10 +15,10 @@
           </e>
         </e>
         <e p="Script" t="Include">
-          <e p="BoardManager.cs" t="Include" />
+          <e p="Board.cs" t="Include" />
+          <e p="Game.cs" t="Include" />
           <e p="MovingObject.cs" t="Include" />
           <e p="player.cs" t="Include" />
-          <e p="scr.cs" t="Include" />
           <e p="SoundManager.cs" t="Include" />
           <e p="Wall.cs" t="Include" />
         </e>
