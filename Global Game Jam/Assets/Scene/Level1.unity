@@ -167,6 +167,31 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114711373865242898, guid: ae7cb6ade2242eb40aa68d80ed64b293,
+        type: 2}
+      propertyPath: wallTiles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114711373865242898, guid: ae7cb6ade2242eb40aa68d80ed64b293,
+        type: 2}
+      propertyPath: mineTiles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114711373865242898, guid: ae7cb6ade2242eb40aa68d80ed64b293,
+        type: 2}
+      propertyPath: enemyTiles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114711373865242898, guid: ae7cb6ade2242eb40aa68d80ed64b293,
+        type: 2}
+      propertyPath: floorTiles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114711373865242898, guid: ae7cb6ade2242eb40aa68d80ed64b293,
+        type: 2}
+      propertyPath: outerWallTiles.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4720418371788898, guid: ae7cb6ade2242eb40aa68d80ed64b293, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0.10328102

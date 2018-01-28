@@ -21,7 +21,7 @@ public class Board : MonoBehaviour {
         public int columns = 10;
         public int rows = 10;
         public Count wallCount = new Count(8, 8);
-        public Count enemyCount = new Count(5, 2);
+        public Count enemyCount = new Count(2, 5);
         public Count mineCount = new Count(3, 7);
 
         public GameObject[] floorTiles;
@@ -83,10 +83,11 @@ public class Board : MonoBehaviour {
         {
             BoardSetup();
             InitialiseList();
-            LayoutObjectAtRandom(wallTiles, wallCount.minimum, wallCount.maximum);
-            LayoutObjectAtRandom(mineTiles, mineCount.minimum, mineCount.maximum);
-            LayoutObjectAtRandom(enemyTiles, enemyCount.minimum, enemyCount.maximum);
-        }
+
+        LayoutObjectAtRandom(wallTiles, wallCount.minimum, wallCount.maximum);
+        LayoutObjectAtRandom(mineTiles, mineCount.minimum, mineCount.maximum);
+        LayoutObjectAtRandom(enemyTiles, enemyCount.minimum, enemyCount.maximum);
+    }
 
         // Use this for initialization
         void Start()
@@ -97,7 +98,18 @@ public class Board : MonoBehaviour {
         // Update is called once per frame
         void Update()
         {
-
+        bool check = true;
+        foreach (var enemy in enemyTiles)
+        {
+            var Human = enemy.gameObject.GetComponent<Enemy>();
+            if (Human.isWolf == false)
+                check = false;
         }
+        if (check == true)
+        {
+            Debug.Log("end");
+            Application.Quit();
+        }
+    }
 
 }

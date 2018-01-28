@@ -6,12 +6,13 @@ public class Player : MonoBehaviour
     public Rigidbody2D Body;
     private const int WallDamage = 1;
     private bool _hited = false;
+    private bool _hite = false;
     private Animator _anim;
     private int life = 10;
     Vector2 fixPos;
     bool die = false;
 
-    protected  void Start()
+    protected void Start()
     {
         Body = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
@@ -89,7 +90,18 @@ public class Player : MonoBehaviour
                 _hited = true;
             }
         }
+        else if (other.gameObject.CompareTag("Enemy") && !_hite)
+        {
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                var enemy = other.gameObject.GetComponent<Enemy>();
+                enemy.attack();
+                _hite = true;
+            }
+        }
         if (Input.GetKeyUp(KeyCode.E))
             _hited = false;
+        if (Input.GetKeyUp(KeyCode.R))
+            _hite = false;
     }
 }
