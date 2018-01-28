@@ -10,7 +10,6 @@ public class player : MonoBehaviour {
 	void Start () {
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        anim.SetTrigger("wait");
         anim.SetBool("check", true);
     }
 
